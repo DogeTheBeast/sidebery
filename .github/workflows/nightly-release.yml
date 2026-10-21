@@ -1,6 +1,7 @@
 name: build-xpi
 
 on:
+  workflow_dispatch:
   push:
     branches:
       - v5
