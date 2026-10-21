@@ -1,15 +1,16 @@
-name: nightly-release
+name: build-xpi
 
 on:
-  workflow_dispatch
+  push:
+    branches:
+      - v5
+
+permissions:
+  contents: write
 
 jobs:
   build-and-sign:
     runs-on: ubuntu-latest
-    env:
-      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      WEB_EXT_API_KEY: ${{ secrets.WEB_EXT_API_KEY }}
-      WEB_EXT_API_SECRET: ${{ secrets.WEB_EXT_API_SECRET }}
     steps:
       - name: Check out the repository to the runner
         uses: actions/checkout@v6
@@ -20,11 +21,24 @@ jobs:
         uses: actions/setup-node@v6
         with:
           node-version: lts/*
-      - name: Configure git
-        run: |
-          git config --global user.name 'GitHub Action Bot'
-          git config --global user.email 'mbnuqw@users.noreply.github.com'
       - name: Build and sign
         run: |
           npm install
-          npm run release.nightly
+          npm run build
+          npm run build.ext
+      - name: Commit and push XPI
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+          mkdir -p releases
+          cp dist/sidebery-5.6.1.zip releases/sidebery.xpi
+
+          git add releases/sidebery.xpi
+
+          if ! git diff --cached --quiet; then
+            git commit -m "chore: update XPI build"
+            git push origin HEAD:custom-release-ci
+          fi
