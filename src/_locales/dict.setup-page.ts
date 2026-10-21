@@ -7543,6 +7543,17 @@ Available parameters:
     zh_TW: '切換分頁',
     ja: 'タブ間の切り替え',
   },
+  'settings.navigate_cyclic': {
+    en: 'Cyclically',
+    de: 'Zyklisch',
+    fr: 'De façon cyclique',
+    hu: 'Ciklikusan',
+    pl: 'Cyklicznie',
+    ru: 'Циклически',
+    zh_CN: '循环',
+    zh_TW: '循環',
+    ja: '循環',
+  },
   'settings.kb_switch_act_note': {
     en: '- using vertical scroll settings for tabs switching',
     de: '- unter Verwendung der Einstellungen für den Wechsel zwischen Tabs durch vertikales Scrollen',

@@ -299,6 +299,7 @@ export interface SettingsState {
   // Keybindings
   selectActiveTabFirst: boolean
   selectCyclic: boolean
+  navigateCyclic: boolean
   loopPanelsIgnoreHidden: boolean
   kbNewTabInPanelPos: (typeof SETTINGS_OPTIONS.newTabInPanelPos)[number]
 }

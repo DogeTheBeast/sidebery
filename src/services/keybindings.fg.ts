@@ -250,11 +250,11 @@ function onCmd(name: string): void {
   } else if (name === 'switch_to_next_tab') {
     const globaly = Settings.state.scrollThroughTabs === 'global'
     const globPin = Settings.state.scrollThroughTabsGlobPinIsolate ? false : undefined
-    Tabs.switchTab(globaly, Settings.state.scrollThroughTabsCyclic, 1, globPin)
+    Tabs.switchTab(globaly, Settings.state.scrollThroughTabsCyclic || Settings.state.navigateCyclic, 1, globPin)
   } else if (name === 'switch_to_prev_tab') {
     const globaly = Settings.state.scrollThroughTabs === 'global'
     const globPin = Settings.state.scrollThroughTabsGlobPinIsolate ? false : undefined
-    Tabs.switchTab(globaly, Settings.state.scrollThroughTabsCyclic, -1, globPin)
+    Tabs.switchTab(globaly, Settings.state.scrollThroughTabsCyclic || Settings.state.navigateCyclic, -1, globPin)
   } else if (name === 'scroll_to_active_panel_top') {
     onKeyScrollToTopBottom(-1)
   } else if (name === 'scroll_to_active_panel_bottom') {

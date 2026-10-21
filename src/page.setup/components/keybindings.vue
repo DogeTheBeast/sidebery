@@ -149,6 +149,11 @@
     .info {{translate('settings.kb_switch_act_note')}}
     KeybindingField(:keybinding="Keybindings.reactive.byName.switch_to_prev_tab")
     .info {{translate('settings.kb_switch_act_note')}}
+    .sub-fields
+      ToggleField(
+        label="settings.navigate_cyclic"
+        v-model:value="Settings.state.navigateCyclic"
+        @update:value="Settings.saveDebounced(150)")
     KeybindingField(:keybinding="Keybindings.reactive.byName.switch_to_parent_tab")
     KeybindingField(:keybinding="Keybindings.reactive.byName.switch_to_unpinned_tab_0")
     KeybindingField(:keybinding="Keybindings.reactive.byName.switch_to_unpinned_tab_1")
